@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartEd - College Education Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="loginPage" class="login-container">
+        <div class="login-box">
+            <div class="login-header">
+                <h2>SmartEd College</h2>
+                <p>Education Management System</p>
+            </div>
+            
+            <div class="user-type-selector">
+                <div class="user-type active" data-type="student">Student</div>
+                <div class="user-type" data-type="teacher">Teacher</div>
+                <div class="user-type" data-type="parent">Parent</div>
+            </div>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username/Email</label>
+                    <input type="text" id="username" placeholder="Enter your username or email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+            </form>
+            
+            <div style="text-align: center; margin-top: 20px; color: var(--gray); font-size: 0.9rem;">
+                <p>Demo Credentials: student/123456, teacher/123456, parent/123456</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Application -->
+    <div id="appContainer" class="container" style="display: none;">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>SmartEd</span>
+                </div>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="#" class="active" data-page="dashboard"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
+                <li><a href="#" data-page="attendance"><i class="fas fa-calendar-check"></i> <span>Attendance</span></a></li>
+                <li><a href="#" data-page="marks"><i class="fas fa-chart-bar"></i> <span>Marks & Grades</span></a></li>
+                <li><a href="#" data-page="curriculum"><i class="fas fa-book-open"></i> <span>Curriculum</span></a></li>
+                <li><a href="#" data-page="exams"><i class="fas fa-clipboard-list"></i> <span>Exam Schedule</span></a></li>
+                <li><a href="#" data-page="revision"><i class="fas fa-brain"></i> <span>Revision Sessions</span></a></li>
+                <li><a href="#" data-page="messages"><i class="fas fa-envelope"></i> <span>Messages</span></a></li>
+                <li><a href="#" data-page="chat"><i class="fas fa-comments"></i> <span>Ask Teacher</span></a></li>
+                <li><a href="#" data-page="reports"><i class="fas fa-chart-pie"></i> <span>Reports</span></a></li>
+                <li><a href="#" data-page="logs"><i class="fas fa-history"></i> <span>Activity Logs</span></a></li>
+            </ul>
+            
+            <div class="user-profile">
+                <div class="user-avatar" id="userAvatar">JD</div>
+                <div class="user-info">
+                    <h4 id="userName">John Doe</h4>
+                    <p id="userRole">Student</p>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="header">
+                <h1 id="pageTitle">Dashboard</h1>
+                <div class="header-actions">
+                    <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-count">3</span>
+                    </button>
+                    <button class="logout-btn" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Dashboard Content -->
+            <div id="dashboardPage" class="page-content">
+                <div class="dashboard-cards">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Attendance</h3>
+                            <div class="card-icon attendance-icon">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                        </div>
+                        <h2 id="attendancePercent">92%</h2>
+                        <p>Overall Attendance</p>
+                        <div style="margin-top: 15px; background-color: var(--light-gray); height: 8px; border-radius: 4px;">
+                            <div style="width: 92%; background-color: var(--success); height: 100%; border-radius: 4px;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Current GPA</h3>
+                            <div class="card-icon marks-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                        </div>
+                        <h2 id="currentGPA">3.75</h2>
+                        <p>Out of 10 Scale</p>
+                        <div style="margin-top: 15px;">
+                            <span class="badge badge-present">Top 10% of Class</span>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Next Exam</h3>
+                            <div class="card-icon exam-icon">
+                                <i class="fas fa-clipboard-list"></i>
+                            </div>
+                        </div>
+                        <h3 id="nextExam">Data Structures</h3>
+                        <p id="examDate">November 15, 2023</p>
+                        <p id="examTime">10:00 AM - 12:00 PM</p>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Pending Assignments</h3>
+                            <div class="card-icon curriculum-icon">
+                                <i class="fas fa-tasks"></i>
+                            </div>
+                        </div>
+                        <h2 id="pendingAssignments">3</h2>
+                        <p>Need to be submitted</p>
+                        <div style="margin-top: 15px;">
+                            <button class="btn btn-primary">View Details</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tabs">
+                    <div class="tab active" data-tab="recent">Recent Activity</div>
+                    <div class="tab" data-tab="upcoming">Upcoming Events</div>
+                    <div class="tab" data-tab="notifications">Notifications</div>
+                    <div class="tab" data-tab="messages">Messages</div>
+                </div>
+                
+                <div class="tab-content active" id="recentTab">
+                    <div class="data-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Activity</th>
+                                    <th>Course</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recentActivity">
+                                <!-- Recent activity will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="upcomingTab">
+                    <div class="data-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Event</th>
+                                    <th>Course</th>
+                                    <th>Type</th>
+                                </tr>
+                            </thead>
+                            <tbody id="upcomingEvents">
+                                <!-- Upcoming events will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="notificationsTab">
+                    <div class="data-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Time</th>
+                                    <th>Notification</th>
+                                    <th>Priority</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="notificationList">
+                                <!-- Notifications will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="messagesTab">
+                    <div class="chat-container" style="height: 400px;">
+                        <div class="chat-main" style="height: 100%;">
+                            <div class="chat-header">
+                                Recent Messages
+                            </div>
+                            <div class="chat-messages" style="height: calc(100% - 60px); overflow-y: auto;">
+                                <div class="message received">
+                                    Hello John, I wanted to remind you about the upcoming Data Structures exam next week.
+                                </div>
+                                <div class="message sent">
+                                    Thank you, Dr. Johnson. I'm currently preparing for it.
+                                </div>
+                                <div class="message received">
+                                    Good to hear! Let me know if you need any clarification on the topics.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Other pages will be loaded here -->
+            <div id="attendancePage" class="page-content" style="display: none;">
+                <!-- Attendance page content -->
+            </div>
+            
+            <div id="marksPage" class="page-content" style="display: none;">
+                <!-- Marks page content -->
+            </div>
+            
+            <div id="curriculumPage" class="page-content" style="display: none;">
+                <!-- Curriculum page content -->
+            </div>
+            
+            <div id="examsPage" class="page-content" style="display: none;">
+                <!-- Exams page content -->
+            </div>
+            
+            <div id="revisionPage" class="page-content" style="display: none;">
+                <!-- Revision page content -->
+            </div>
+            
+            <div id="messagesPage" class="page-content" style="display: none;">
+                <!-- Messages page content -->
+            </div>
+            
+            <div id="chatPage" class="page-content" style="display: none;">
+                <!-- Chat page content -->
+            </div>
+            
+            <div id="reportsPage" class="page-content" style="display: none;">
+                <!-- Reports page content -->
+            </div>
+            
+            <div id="logsPage" class="page-content" style="display: none;">
+                <!-- Logs page content -->
+            </div>
+        </main>
+    </div>
+
+    <script src="js/app.js"></script>
+
+
+
+
+
+
+</body>
+</html>
